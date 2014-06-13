@@ -207,7 +207,7 @@
                           'leiningen.uberjar/clj-map-merger,
                         ;; So we don't break Java's ServiceLoader mechanism
                         ;; during uberjar construction
-                        #"META-INF/services/.*" `[slurp str spit]}
+                        #"META-INF/services/.*" `[slurp #(s/join "\r\n" (map s/trim-newline %&)) spit]}
    :global-vars {}})
 
 (defn dep-key
